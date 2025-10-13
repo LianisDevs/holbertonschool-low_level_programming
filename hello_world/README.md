@@ -4,4 +4,7 @@
 * script that runs c file through preprocessor saves result to another file
 
 ** 1- compiler **
-* script that compiles c file but does not link
+* script that compiles c file but does not link and file name doesn't change other than extension
+
+** 2- Assembler **
+* script that generates assembly code and save to output file
