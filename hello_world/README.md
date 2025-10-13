@@ -8,3 +8,6 @@
 
 ** 2- Assembler **
 * script that generates assembly code and save to output file
+
+** 3- Name**
+* script that compiles c file and creates executable
