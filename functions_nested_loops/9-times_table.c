@@ -18,10 +18,18 @@ void times_table(void)
 		{
 			first_digit = ((n * counter) / 10);
 			second_digit = ((n * counter) % 10);
+			
 			if (first_digit == 0)
 			{
-				_putchar(' ');
-				_putchar('0' + second_digit);
+				if (n == 0)
+				{
+					_putchar('0' + second_digit);
+				}
+				else 
+				{
+					_putchar(' ');
+					_putchar('0' + second_digit);
+				}
 			}
 			else
 			{
