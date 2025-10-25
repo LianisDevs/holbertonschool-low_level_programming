@@ -11,4 +11,6 @@ int _strlen(char *s);
 
 void puts2(char *str);
 
+void _puts(char *str);
+
 #endif
