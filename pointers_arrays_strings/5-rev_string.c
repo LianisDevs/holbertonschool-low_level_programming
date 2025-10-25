@@ -27,8 +27,8 @@ void rev_string(char *s)
 		temp = *start_ptr;
 		*start_ptr = *end_ptr;
 		*end_ptr = temp;
-		
+
 		start_ptr++;
-		end_ptr--;	
+		end_ptr--;
 	}
 }
