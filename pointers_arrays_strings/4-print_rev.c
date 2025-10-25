@@ -7,12 +7,7 @@
 
 void print_rev(char *s)
 {
-	int counter = 0;
-
-	if (s == '\0')
-	{
-		_putchar('\n');
-		return;
+	int counter;
 
 	while (s[counter] != '\0')
 	{
@@ -22,6 +17,11 @@ void print_rev(char *s)
 	while (counter >= 0)
 	{
 		_putchar(s[counter]);
+		if (counter == 0)
+		{
+			_putchar('\n');
+			return;
+		}
 		counter--;
 	}
 	_putchar('\n');
