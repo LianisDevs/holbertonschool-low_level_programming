@@ -9,7 +9,7 @@ void print_rev(char *s)
 {
 	int counter = 0;
 
-	if (*s == '\n')
+	if (*s == '\0')
 	{
 		_putchar('\n');
 		return;
