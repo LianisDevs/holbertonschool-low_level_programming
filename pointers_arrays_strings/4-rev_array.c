@@ -4,6 +4,7 @@
 /**
  * reverse_array - reverses contents of array of ints
  * @a: pointer to array
+ * @n: size of array
  * Return: nothing
  */
 
