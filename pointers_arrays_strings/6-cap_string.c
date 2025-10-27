@@ -10,27 +10,18 @@
 char *cap_string(char *str)
 {
 	int i, j;
-	char sep[] = " ,;.!?\"(){}\n";
+	char sep[] = " \t,;.!?\"(){}\n";
+
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if ((str[i] >= 65 && str[i] <= 90) || (str[i] >= 97 && str[i] <= 122))
-		{
-			printf("This is a letter: %c\n", str[i]);
-			continue;
-		}
-		
+		if (str[0] >= 97 && str[0] <= 122)
+			str[i] = str[i] - 32;
+
 		for (j = 0; sep[j] != '\0'; j++)
 		{
-			
-			printf("str[i]= %c sep[j]= %c\n", str[i], sep[j]);
-			if (str[i] == sep[j])
-				printf("str[i]= %c sep[j]= %c\n", str[i], sep[j]);
-			{
-			       if (str[i + 1] >= 97 && str[i + 1] <= 122)
-					str[i] = str[i] - 32;
-				break;
-			}
+			if (str[i - 1] == sep[j] && (str[i] >= 97 && str[i] <= 122))
+				str[i] = str[i] - 32;
 		}
 	}
 	return (str);
