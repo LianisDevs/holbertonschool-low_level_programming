@@ -3,7 +3,7 @@
 
 /**
  * _memcpy - copies memory area
- * @dest: pointer to memory area to be filled 
+ * @dest: pointer to memory area to be filled
  * @src: pointer to where the values will be copied from
  * @n: number of bytes to copy
  * Return: dest
@@ -18,13 +18,11 @@ char *_memcpy(char *dest, char *src, unsigned int n)
 
 	while (n > 0)
 	{
-		printf("N is: %i\n", n);
 		for (i = 0; i < n; i++)
 		{
-			*dest = src[i];
+			dest[i] = src[i];
 		}
 		n--;
-		printf("n is: %i\n", n);
 	}
 	return (dest);
 }
