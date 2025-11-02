@@ -14,8 +14,9 @@ char *_strstr(char *haystack, char *needle)
 	char *temp_h;
 	char *n;
 
-	while (*haystack != '\0')
+	while (*h != '\0')
 	{
+
 		temp_h = h;
 		n = needle;
 
