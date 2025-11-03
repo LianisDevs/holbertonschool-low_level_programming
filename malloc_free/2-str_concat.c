@@ -22,8 +22,6 @@ char *str_concat(char *s1, char *s2)
 	s1_size = length(s1);
 	s2_size = length(s2);
 
-	printf("S1:%s s1_size: %d\n", s1, s1_size);
-	printf("S2:%s s2_size: %d\n", s2, s2_size);
 	size = s1_size + s2_size;
 
 	p = malloc(((size + 1) * sizeof(char)));
