@@ -17,8 +17,7 @@ char *create_array(unsigned int size, char c)
 	if (size <= 0)
 		return (NULL);
 
-	/*size + 1 to add the \0 at the end*/
-	p = malloc((size + 1) * sizeof(char));
+	p = malloc(size * sizeof(char));
 
 	/*always check after using Malloc if it failed*/
 	if (p == NULL)
