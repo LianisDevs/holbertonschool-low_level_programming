@@ -15,7 +15,7 @@ void *malloc_checked(unsigned int b)
 	if (b <= 0)
 		return (NULL);
 	/*allocate memory*/
-	p = malloc(b * sizeof(unsigned int));
+	p = malloc(b);
 
 	/*check malloc worked... if not exit status value*/
 	if (p == NULL)
