@@ -35,7 +35,7 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	}
 	/*comparing j to n to make sure we only copy n elements of s2*/
 	j = 0;
-	while (s2_size != 0 && j <= n)
+	while (s2_size != 0 && j < n)
 	{
 		p[i] = s2[j];
 		j++;
