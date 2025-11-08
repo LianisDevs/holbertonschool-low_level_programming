@@ -22,23 +22,23 @@ char *string_nconcat(char *s1, char *s2, unsigned int n)
 	if (n >= s2_size)
 		n = s2_size;
 
-	size = s1_size + s2_size + 1;
+	size = s1_size + s2_size;
 
-	p = malloc(size * sizeof(char));
+	p = malloc((size + 1) * sizeof(char));
 	/*check malloc successful*/
 	if (p == NULL)
 		return (NULL);
 
 	/*loop through and copy elements from both string to new mem*/
 	i = 0;
-	while (s1[i] != '\0')
+	while (s1_size != 0 && s1[i] != '\0')
 	{
 		p[i] = s1[i];
 		i++;
 	}
 	/*comparing j to n to make sure we only copy n elements of s2*/
 	j = 0;
-	while (j < n)
+	while (s2_size != 0 && j < n)
 	{
 		p[i] = s2[j];
 		j++;
