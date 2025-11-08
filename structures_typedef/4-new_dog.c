@@ -3,7 +3,7 @@
 #include <stdlib.h>
 
 int length(char *s);
-void free_dog(dog_t *dog);
+void free_new_dog(dog_t *dog);
 
 /**
  * new_dog - creates a new dog
@@ -78,11 +78,11 @@ int length(char *s)
 	return (i);
 }
 /**
- * free_dog - frees each dog if malloc fails
+ * free_new_dog - frees each dog if malloc fails
  * @dog: pointer to dog
  * Return: nothing/ void
  */
-void free_dog(dog_t *dog)
+void free_new_dog(dog_t *dog)
 {
 	if (dog->name != NULL)
 		free(dog->name);
