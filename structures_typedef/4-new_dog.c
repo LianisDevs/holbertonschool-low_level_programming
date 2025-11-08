@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 int length(char *s);
+void free_dog(dog_t *dog);
 
 /**
  * new_dog - creates a new dog
@@ -19,44 +20,41 @@ dog_t *new_dog(char *name, float age, char *owner)
 
 	if (new_dog == NULL)
 		return (NULL);
-	/*find length of name*/
+
+	/*find length of name and owner*/
 	n_length = length(name);
+	o_length = length(owner);
 
-	/*allocate enough memory for name*/
+	/*allocate enough memory and check malloc worked, free dog if malloc failed*/
 	new_dog->name = malloc(n_length * sizeof(char *));
-
-	/*check malloc worked*/
 	if (new_dog->name == NULL)
+	{
+		free_dog(new_dog);
 		return (NULL);
+	}
 
-	/*copy each element in name to new_dog->name*/
+	new_dog->owner = malloc(o_length * sizeof(char *));
+	if (new_dog->owner == NULL)
+	{
+		free_dog(new_dog);
+		return (NULL);
+	}
+
+	/*copy each element to new_dog-> and add null term at the end of string*/
 	i = 0;
 	while (name[i] != '\0')
 	{
 		new_dog->name[i] = name[i];
 		i++;
 	}
-	/*add null term at the end of string*/
 	new_dog->name[i] = '\0';
 
-	/*find length of owner*/
-	o_length = length(owner);
-
-	/*allocate enough memory for owner*/
-	new_dog->owner = malloc(o_length * sizeof(char *));
-
-	/*check malloc worked*/
-	if (new_dog->owner == NULL)
-		return (NULL);
-
-	/*copy each element of owner to new_dog->owner*/
 	j = 0;
 	while (owner[j] != '\0')
 	{
 		new_dog->owner[j] = owner[j];
 		j++;
 	}
-	/*add null term to end of string*/
 	new_dog->owner[j] = '\0';
 
 	new_dog->age = age;
@@ -78,4 +76,18 @@ int length(char *s)
 	while (s[i] != '\0')
 		i++;
 	return (i);
+}
+/**
+ * free_dog - frees each dog if malloc fails
+ * @dog: pointer to dog
+ * Return: nothing/ void
+ */
+void free_dog(dog_t *dog)
+{
+	if (dog->name != NULL)
+		free(dog->name);
+	if (dog->owner != NULL)
+		free(dog->owner);
+	free(dog);
+	dog = NULL;
 }
