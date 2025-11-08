@@ -25,7 +25,7 @@ int *array_range(int min, int max)
 		return (NULL);
 
 	i = 0;
-	while (p[i] < length && min <= max)
+	while (min <= max)
 	{
 		p[i] = min;
 		i++;
