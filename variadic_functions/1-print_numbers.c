@@ -16,7 +16,10 @@ void print_numbers(const char *separator, const unsigned int n, ...)
 
 	/*check if n = 0 means no numbers were given*/
 	if (n == 0)
+	{
+		printf("\n");
 		return;
+	}
 
 	/*enable access to variadic function arguments*/
 	va_start(var, n);
