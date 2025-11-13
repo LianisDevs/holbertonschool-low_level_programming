@@ -17,6 +17,9 @@ void print_strings(const char *separator, const unsigned int n, ...)
 	/*enables access to variadic function arguments*/
 	va_start(var, n);
 
+	if (separator == NULL)
+		separator = "";
+
 	i = 0;
 	while (i < n)
 	{
