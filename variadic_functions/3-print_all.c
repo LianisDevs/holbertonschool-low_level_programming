@@ -18,7 +18,7 @@ void print_all(const char * const format, ...)
 	va_start(var, format);
 
 	i = 0;
-	while (format[i] != '\0')
+	while (format != NULL && format[i])
 	{
 		fptr = get_printer(format[i]);
 		if (fptr != NULL && fptr(var) == 0 && format[i + 1] != '\0')
