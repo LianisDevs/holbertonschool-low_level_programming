@@ -7,7 +7,11 @@ int print_int(va_list var);
 int print_float(va_list var);
 int print_string(va_list var);
 
-
+/**
+ * print_all - function that checks format and prints
+ * @format: string of formats given to function
+ * Return: nothing/void
+ */
 void print_all(const char * const format, ...)
 {
 	int i;
@@ -28,6 +32,11 @@ void print_all(const char * const format, ...)
 	printf("\n");
 }
 
+/**
+ * get_printer - matches format to element in symbol array
+ * @format: character in format string to check if in symbol array
+ * Return: function pointer
+ */
 int (*get_printer(char format))(va_list)
 {
 	int j;
@@ -48,11 +57,22 @@ int (*get_printer(char format))(va_list)
 	return (symbol[j].f);
 }
 
+/**
+ * print_char - print char
+ * @var: variadic list contatining the argument to print
+ * Return: int 0 to show success
+ */
 int print_char(va_list var)
 {
 	printf("%c", va_arg(var, int));
 	return (0);
 }
+
+/**
+ * print_int - print int
+ * @var: variadic list containing the argument to print
+ * Return: int 0 to show success
+ */
 
 int print_int(va_list var)
 {
@@ -60,19 +80,30 @@ int print_int(va_list var)
 	return (0);
 }
 
+/**
+ * print_float - print float
+ * @var: variadic list containing the argument to print
+ * Return: int 0 to show success
+ */
+
 int print_float(va_list var)
 {
 	printf("%f", va_arg(var, double));
 	return (0);
 }
 
+/**
+ * print_string - print string
+ * @var: variadic list containing the argument to print
+ * Return: int 0 to show success
+ */
 int print_string(va_list var)
 {
 	char *string;
 
 	string = va_arg(var, char *);
 
-	if (*string == '\0')
+	if (string == NULL)
 	{
 		printf("(nil)");
 		return (0);
