@@ -1,11 +1,11 @@
 #include "variadic_functions.h"
 #include <stdio.h>
 
-void get_printer(char format, va_list var);
-void print_char(va_list var);
-void print_int(va_list var);
-void print_float(va_list var);
-void print_string(va_list var);
+int (*get_printer(char format))(va_list);
+int print_char(va_list var);
+int print_int(va_list var);
+int print_float(va_list var);
+int print_string(va_list var);
 
 
 void print_all(const char * const format, ...)
@@ -13,20 +13,23 @@ void print_all(const char * const format, ...)
 	int i;
 	va_list var;
 
+	int (*fptr)(va_list);
+
 	va_start(var, format);
 
 	i = 0;
 	while (format[i] != '\0' && format[i + 1] != '\0')
 	{
-		get_printer(format[i], var);
-		printf(", ");
+		fptr = get_printer(format[i]);
+		if (fptr != NULL && fptr(var) == 0 && format[i + 1] != '\0')
+			printf(", ");
 		i++;
 	}
-	get_printer(format[i], var);
+	get_printer(format[i]);
 	printf("\n");
 }
 
-void get_printer(char format, va_list var)
+int (*get_printer(char format))(va_list)
 {
 	int j;
 
@@ -39,33 +42,32 @@ void get_printer(char format, va_list var)
 	};
 
 	j = 0;
-	while (symbol[j].arg != NULL)
+	while (symbol[j].arg != NULL && format != symbol[j].arg[0])
 	{
-		if (format == symbol[j].arg[0])
-		{
-			symbol[j].f(var);
-			break;
-		}
 		j++;
 	}
+	return (symbol[j].f);
 }
 
-void print_char(va_list var)
+int print_char(va_list var)
 {
 	printf("%c", va_arg(var, int));
+	return (0);
 }
 
-void print_int(va_list var)
+int print_int(va_list var)
 {
 	printf("%d", va_arg(var, int));
+	return (0);
 }
 
-void print_float(va_list var)
+int print_float(va_list var)
 {
 	printf("%f", va_arg(var, double));
+	return (0);
 }
 
-void print_string(va_list var)
+int print_string(va_list var)
 {
 	char *string;
 
@@ -74,7 +76,8 @@ void print_string(va_list var)
 	if (*string == '\0')
 	{
 		printf("(nil)");
-		return;
+		return (0);
 	}
 	printf("%s", string);
+	return (0);
 }
