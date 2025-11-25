@@ -8,3 +8,4 @@
 
 * 3- adds new node at the end of the linked list
 
+* 4- frees a linked list
