@@ -19,10 +19,11 @@ list_t *add_node(list_t **head, const char *str)
 	if (new_node == NULL)
 		return (NULL);
 
-	node_setup(head, str, new_node);
-
-	/*update head to be the new_node so it's first*/
-	*head = new_node;
+	/*
+	 * update head to be the new_node so it's first
+	 * node_setup returns the new node
+	 */
+	*head = node_setup(head, str, new_node);
 
 	return (new_node);
 }
