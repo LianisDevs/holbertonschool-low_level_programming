@@ -9,22 +9,19 @@
  */
 dlistint_t *get_dnodeint_at_index(dlistint_t *head, unsigned int index)
 {
-	dlistint_t *temp = head;
 	unsigned int num_elements = 0;
 
-	if (head == NULL)
-		return (NULL);
-
-	while (temp->next != NULL)
+	/*
+	 * checking while num_elements < index it'll either match
+	 * or increment through to last node therefore == NULL
+	 * by doing it this way when we rteturn head it will 
+	 * either be the index or it will be NULL
+	 */
+	while (num_elements < index && head != NULL)
 	{
-		/*checking if index and num_elements match and return that node*/
-		if (index == num_elements)
-			return (temp);
-
 		/*move to next node and increment num_elements*/
-		temp = temp->next;
+		head = head->next;
 		num_elements++;
 	}
-
-	return (NULL);
+	return (head);
 }
