@@ -7,3 +7,5 @@
 * 2- adds a new node to the beginning of the doubly linked list
 
 * 3- adds a new node to the end of the doubly linked list
+
+* 4- frees a doubly linked list
