@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "lists.h"
 
-dlistint_t *node_setup(dlistint_t **temp, const int n, dlistint_t *new_node);
+dlistint_t *node_setup(dlistint_t *temp, const int n, dlistint_t *new_node);
 
 /**
  * add_dnodeint - add a new node at the beginning of the list
@@ -13,7 +13,7 @@ dlistint_t *node_setup(dlistint_t **temp, const int n, dlistint_t *new_node);
 
 dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 {
-	dlistint_t **temp = head;
+	dlistint_t *temp = *head;
 	dlistint_t *new_node = malloc(sizeof(dlistint_t));
 
 	if (new_node == NULL)
@@ -36,7 +36,7 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
  * Return: pointer to new node
  */
 
-dlistint_t *node_setup(dlistint_t **temp, const int n, dlistint_t *new_node)
+dlistint_t *node_setup(dlistint_t *temp, const int n, dlistint_t *new_node)
 {
 	new_node->n = n;
 	new_node->prev = NULL;
@@ -44,7 +44,7 @@ dlistint_t *node_setup(dlistint_t **temp, const int n, dlistint_t *new_node)
 	if (temp == NULL)
 		new_node->next = NULL;
 	else
-		new_node->next = *temp;
+		new_node->next = temp;
 
 	return (new_node);
 }
