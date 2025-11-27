@@ -18,7 +18,7 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 	if (new_node == NULL)
 		return (NULL);
 	/*
-	 * update head to be the new node so it's first in the list
+	 * update head->prev to be the new node
 	 * node_setup returns the new node
 	 */
 	*head = node_setup(head, n, new_node);
@@ -38,7 +38,11 @@ dlistint_t *node_setup(dlistint_t **head, const int n, dlistint_t *new_node)
 {
 	new_node->n = n;
 	new_node->prev = NULL;
-	new_node->next = *head;
+
+	if (head == NULL)
+		new_node->next = NULL;
+	else
+		new_node->next = *head;
 
 	return (new_node);
 }
