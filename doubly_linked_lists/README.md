@@ -13,3 +13,5 @@
 * 5- returns the nth node of a doubly linked list
 
 * 6- returns the sum of all the data (n) of a doubly linked list
+
+* 7- inserts a new node at a given position

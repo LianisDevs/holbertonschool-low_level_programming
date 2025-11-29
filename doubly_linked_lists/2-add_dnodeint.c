@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "lists.h"
 
-dlistint_t *node_setup(dlistint_t **head, const int n, dlistint_t *new_node);
+dlistint_t *n_setup_beg(dlistint_t **head, const int n, dlistint_t *new_node);
 
 /**
  * add_dnodeint - add a new node at the beginning of the list
@@ -22,20 +22,20 @@ dlistint_t *add_dnodeint(dlistint_t **head, const int n)
 	 * update head to be the new node
 	 * node_setup returns the new node
 	 */
-	*head = node_setup(head, n, new_node);
+	*head = n_setup_beg(head, n, new_node);
 
 	return (new_node);
 }
 
 /**
- * node_setup - sets up the elements of the new node
+ * n_setup_beg - sets up the elements of the new node
  * @head: pointer to head of list
  * @n: int value to add to new node
  * @new_node: pointer to new node
  * Return: pointer to new node
  */
 
-dlistint_t *node_setup(dlistint_t **head, const int n, dlistint_t *new_node)
+dlistint_t *n_setup_beg(dlistint_t **head, const int n, dlistint_t *new_node)
 {
 	new_node->n = n;
 	new_node->prev = NULL;
