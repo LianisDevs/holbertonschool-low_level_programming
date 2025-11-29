@@ -3,18 +3,32 @@
 #include "lists.h"
 
 dlistint_t *node_setup_at_index(dlistint_t *temp, int n, dlistint_t *new_node);
+
 /**
- * insert_dnodeint_at_index - inserts a new node at a given position
+ * insert_dnodeint_at_index - inserts new node at index position
  * @h: pointer to head
- * @idx: position to add new node at
- * @n: value to add in new node
- * Return: address of new node or NULL if it failed
+ * @idx: index of the list where the node should be added
+ * @n: number to add to new node
+ * Return: pointer to new node or NULL
  */
 dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 {
-	dlistint_t *temp = *h;
 	unsigned int num_elements = 0;
+	dlistint_t *temp = *h;
 
+	/*
+	 * if idx is 0 we don't need to check anything else
+	 * since this task is compiled with both files:
+	 * 2-add_dnodeint.c and 3-add_dnodeint_end.c
+	 * using the function from 2 to add and setup the new node
+	 */
+	if (idx == 0)
+		return (add_dnodeint(h, n));
+
+	/*
+	 * traversing through the list comparing num_elements to idx
+	 * to look for a match or until temp is at the end of the list
+	 */
 	while (num_elements < idx && temp != NULL)
 	{
 		temp = temp->next;
@@ -27,15 +41,16 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 
 		if (new_node == NULL)
 			return (NULL);
+
 		return (node_setup_at_index(temp, n, new_node));
 	}
 	return (NULL);
 }
 
 /**
- * node_setup_at_index - sets up the new node at index position
- * @temp: copy of head that's now traversed to the index position
- * @n: value to add in new node
+ * node_setup_at_index - sets up new node at index position
+ * @temp: copy of head now traaversed to the correct index
+ * @n: number to add to new node
  * @new_node: pointer to new node
  * Return: pointer to new node
  */
