@@ -37,14 +37,14 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	}
 
 	/*check to see if index wasn't found and return to reduce wasted time*/
-	if (num_nodes != index)
+	if (num_nodes != index || temp == NULL)
 		return (-1);
 
 	/*check if deleting at end*/
-	if (num_nodes == index && temp == NULL)
+	if (num_nodes == index && temp->next == NULL)
 		return (delete_at_end(temp));
 
-	/*check if deleting in the somewhere in middle zone*/
+	/*check if deleting in the somewhere idn middle zone*/
 	if (num_nodes == index)
 		return (delete_at_index(temp));
 
