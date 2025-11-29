@@ -22,7 +22,7 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 	 * 2-add_dnodeint.c and 3-add_dnodeint_end.c
 	 * using the function from 2 to add and setup the new node
 	 */
-	if (idx == 0)
+	if (*h == NULL || idx == 0)
 		return (add_dnodeint(h, n));
 
 	/*
@@ -35,7 +35,10 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		num_elements++;
 	}
 
-	if (temp->next == NULL && num_elements == idx)
+	if (num_elements != idx)
+		return (NULL);
+
+	if (temp == NULL)
 		return (add_dnodeint_end(h, n));
 
 	if (num_elements == idx)
