@@ -1,0 +1,3 @@
+# FILE I/O
+
+* 0- reads a text file and prints it to the POSIX std output
