@@ -5,3 +5,5 @@
 * 1- creates a file and adds text to file
 
 * 2- appends text at the end of a file
+
+* 3- copies the content of a file to another file
