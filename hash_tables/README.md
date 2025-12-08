@@ -6,3 +6,5 @@
 
 * 2- function that gives you the index of a key
 
+* 3- function that adds an element to the hash table
+
