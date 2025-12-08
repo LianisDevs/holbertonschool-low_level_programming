@@ -27,6 +27,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/*checking if key already exists then only updating the value*/
 	if (ht->array[index] != NULL && ht->array[index]->key == key)
 	{
+		/*need to clear current value then set*/
+		free(ht->array[index]->value);
 		ht->array[index]->value = strdup(value);
 		return (1);
 	}
