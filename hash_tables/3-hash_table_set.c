@@ -4,6 +4,7 @@
 #include "hash_tables.h"
 
 int setup(const char *key, const char *value, hash_node_t *new_node);
+void key_same(const char *value, hash_table_t *ht, unsigned long int index);
 /**
  * hash_table_set - adds an element to the hash table
  * @ht: pointer to hashtable to add to
@@ -24,15 +25,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/*get the key_index*/
 	index = key_index((const unsigned char *)key, ht->size);
 
-	/*checking if key already exists then only updating the value*/
-	if (ht->array[index] != NULL && ht->array[index]->key == key)
-	{
-		/*need to clear current value then set*/
-		free(ht->array[index]->value);
-		ht->array[index]->value = strdup(value);
-		return (1);
-	}
-
 	/*checking if setup function failed for fast return*/
 	if (setup(key, value, new_node) == 1)
 		return (0);
@@ -44,6 +36,13 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/*if index position already has a node then add new_node to front of list*/
 	else
 	{
+		/*checking if key already exists*/
+		if (ht->array[index]->key == key)
+		{
+			key_same(value, ht, index);
+			return (1);
+		}
+
 		new_node->next = ht->array[index];
 		ht->array[index] = new_node;
 	}
@@ -81,4 +80,18 @@ int setup(const char *key, const char *value, hash_node_t *new_node)
 	}
 	new_node->next = NULL;
 	return (0);
+}
+
+/**
+ * key_same - updates value to new value
+ * @value: value associated with key
+ * @ht: hash table
+ * @index: index position in array
+ * Return: nothing/ void
+ */
+void key_same(const char *value, hash_table_t *ht, unsigned long int index)
+{
+	/*need to clear current value then set new value*/
+	free(ht->array[index]->value);
+	ht->array[index]->value = strdup(value);
 }
