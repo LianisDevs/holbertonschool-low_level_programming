@@ -28,13 +28,13 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	/*setting temp to be current index in array so we can traverse list*/
 	temp = ht->array[index];
 
-	while (temp != NULL)
+	while (temp->next != NULL)
 	{
 		/*checking if key is in array*/
-		key_check = strcmp(ht->array[index]->key, key);
+		key_check = strcmp(temp->key, key);
 
 		if (key_check == 0)
-			return (ht->array[index]->value);
+			return (temp->value);
 		temp = temp->next;
 	}
 	return (NULL);
