@@ -16,6 +16,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
 	hash_node_t *new_node;
+	int key_check = 1;
 
 	if (ht == NULL)
 		return (0);
@@ -23,8 +24,12 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/*get the key_index*/
 	index = key_index((const unsigned char *)key, ht->size);
 
+	/*if element exists check if it matches key*/
+	if (ht->array[index] != NULL)
+		key_check = strcmp(ht->array[index]->key, key);
+
 	/*checking if key exists already*/
-	if (ht->array[index] != NULL && ht->array[index]->key == key)
+	if (key_check == 0)
 		return (key_same(value, ht, index));
 
 	new_node = setup(key, value);
