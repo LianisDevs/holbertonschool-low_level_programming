@@ -8,3 +8,5 @@
 
 * 3- function that adds an element to the hash table
 
+* 4- function that retrieves a value associated with a key
+
