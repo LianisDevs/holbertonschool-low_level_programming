@@ -21,12 +21,19 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	if (new_node == NULL)
 		return (0);
 
-	/*checking if setup functrion failed for fast return*/
-	if (setup(key, value, new_node) == 1)
-		return (0);
-
 	/*get the key_index*/
 	index = key_index((const unsigned char *)key, ht->size);
+
+	/*checking if key already exists then only updating the value*/
+	if (ht->array[index] != NULL && ht->array[index]->key == key)
+	{
+		ht->array[index]->value = strdup(value);
+		return (1);
+	}
+
+	/*checking if setup function failed for fast return*/
+	if (setup(key, value, new_node) == 1)
+		return (0);
 
 	/*if nothing at index position then add new node*/
 	if (ht->array[index] == NULL)
@@ -35,7 +42,10 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/*if index position already has a node then add new_node to front of list*/
 	else
 	{
+		if (ht->array[index]->key == key)
+
 		new_node->next = ht->array[index];
+
 		ht->array[index] = new_node;
 	}
 	return (1);
