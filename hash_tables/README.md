@@ -10,3 +10,5 @@
 
 * 4- function that retrieves a value associated with a key
 
+* 5- function that prints a hash table
+
