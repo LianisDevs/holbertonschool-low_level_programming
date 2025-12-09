@@ -12,3 +12,5 @@
 
 * 5- function that prints a hash table
 
+* 6- function that deletes a hash table
+
